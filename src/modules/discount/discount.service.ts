@@ -10,7 +10,7 @@ export class DiscountService {
   }
 
   async findByCode(code: string) {
-    return this.prisma.discount.findUnique({ where: { code }});
+    return this.prisma.discount.findUnique({ where: { code } });
   }
 
   async list() {

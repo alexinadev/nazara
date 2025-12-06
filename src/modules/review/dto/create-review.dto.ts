@@ -1,16 +1,15 @@
 import {
   IsNotEmpty,
-  IsString,
   IsNumber,
   IsArray,
   ArrayMinSize,
+  IsString,
 } from 'class-validator';
 
 export class CreateReviewDto {
   @IsNotEmpty()
   appointmentId: string;
 
-  @IsNotEmpty()
   @IsNumber()
   rating: number;
 

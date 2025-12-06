@@ -5,7 +5,6 @@ import {
   UseGuards,
   Patch,
   Param,
-  Delete,
   Get,
 } from '@nestjs/common';
 import { AppointmentService } from './appointement.service';
@@ -19,22 +18,22 @@ export class AppointmentController {
   constructor(private svc: AppointmentService) {}
 
   @Post()
-  async create(@CurrentUser() user: any, @Body() dto: CreateAppointmentDto) {
+  create(@CurrentUser() user: any, @Body() dto: CreateAppointmentDto) {
     return this.svc.createAppointment(user.id, dto);
   }
 
   @Patch(':id/cancel')
-  async cancel(@CurrentUser() user: any, @Param('id') id: string) {
+  cancel(@CurrentUser() user: any, @Param('id') id: string) {
     return this.svc.cancelAppointment(user.id, id);
   }
 
   @Patch(':id/done')
-  async done(@Param('id') id: string) {
+  markDone(@Param('id') id: string) {
     return this.svc.markDone(id);
   }
 
   @Get(':id')
-  async get(@Param('id') id: string) {
-    return this.svc.prisma.appointment.findUnique({ where: { id } });
+  get(@Param('id') id: string) {
+    return this.svc['prisma'].appointment.findUnique({ where: { id } });
   }
 }

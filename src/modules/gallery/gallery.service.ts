@@ -10,6 +10,10 @@ export class GalleryService {
   }
 
   async listBySalon(salonId: string) {
-    return this.prisma.gallery.findMany({ where: { salonId }});
+    return this.prisma.gallery.findMany({ where: { salonId } });
+  }
+
+  async listByStaff(staffId: string) {
+    return this.prisma.gallery.findMany({ where: { staffId } });
   }
 }

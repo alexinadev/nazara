@@ -31,7 +31,7 @@ export class SalonController {
     @Query('perPage') perPage = '10',
     @Query('q') q?: string,
   ) {
-    return this.svc.findAll(+page, +perPage, { q });
+    return this.svc.findAll(+page, +perPage, q);
   }
 
   @Get(':id')

@@ -7,6 +7,7 @@ import {
   Param,
   Body,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { ServicesService } from './services.service';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
@@ -25,8 +26,12 @@ export class ServicesController {
   }
 
   @Get()
-  findAll() {
-    return this.svc.findAll();
+  findAll(
+    @Query('page') page = '1',
+    @Query('perPage') perPage = '20',
+    @Query('q') q?: string,
+  ) {
+    return this.svc.findAll(+page, +perPage, q);
   }
 
   @Get(':id')

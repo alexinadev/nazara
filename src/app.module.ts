@@ -7,7 +7,7 @@ import { UserModule } from './modules/user/user.module';
 import { SalonModule } from './modules/salon/salon.module';
 import { StaffModule } from './modules/staff/staff.module';
 import { ServicesModule } from './modules/services/services.module';
-import { AppointementModule } from './modules/appointement/appointement.module';
+import { AppointmentModule } from './modules/appointement/appointement.module';
 import { ReviewModule } from './modules/review/review.module';
 import { GalleryModule } from './modules/gallery/gallery.module';
 import { DiscountModule } from './modules/discount/discount.module';
@@ -23,7 +23,7 @@ import { FavoritesModule } from './modules/favorites/favorites.module';
     SalonModule,
     StaffModule,
     ServicesModule,
-    AppointementModule,
+    AppointmentModule,
     ReviewModule,
     GalleryModule,
     DiscountModule,

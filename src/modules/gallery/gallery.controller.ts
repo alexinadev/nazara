@@ -11,7 +11,9 @@ export class GalleryController {
   }
 
   @Get()
-  list(@Query('salonId') salonId: string) {
-    return this.svc.listBySalon(salonId);
+  list(@Query('salonId') salonId?: string, @Query('staffId') staffId?: string) {
+    if (salonId) return this.svc.listBySalon(salonId);
+    if (staffId) return this.svc.listByStaff(staffId);
+    return [];
   }
 }

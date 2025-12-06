@@ -6,14 +6,22 @@ export class FavoritesService {
   constructor(private prisma: PrismaService) {}
 
   async favoriteSalon(customerId: string, salonId: string) {
-    return this.prisma.favoriteSalon.create({ data: { customerId, salonId }});
+    return this.prisma.favoriteSalon.create({ data: { customerId, salonId } });
   }
 
   async unfavoriteSalon(customerId: string, salonId: string) {
-    return this.prisma.favoriteSalon.deleteMany({ where: { customerId, salonId }});
+    return this.prisma.favoriteSalon.deleteMany({
+      where: { customerId, salonId },
+    });
   }
 
   async favoriteStaff(customerId: string, staffId: string) {
-    return this.prisma.favoriteStaff.create({ data: { customerId, staffId }});
+    return this.prisma.favoriteStaff.create({ data: { customerId, staffId } });
+  }
+
+  async unfavoriteStaff(customerId: string, staffId: string) {
+    return this.prisma.favoriteStaff.deleteMany({
+      where: { customerId, staffId },
+    });
   }
 }

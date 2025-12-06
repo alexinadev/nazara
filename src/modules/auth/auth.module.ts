@@ -1,12 +1,3 @@
-// import { Module } from '@nestjs/common';
-// import { AuthService } from './auth.service';
-// import { AuthController } from './auth.controller';
-
-// @Module({
-//   controllers: [AuthController],
-//   providers: [AuthService],
-// })
-// export class AuthModule {}
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { ThrottlerModule } from '@nestjs/throttler';
@@ -16,21 +7,33 @@ import { AuthService } from './auth.service';
 import { AuthController } from './controllers/auth.controller';
 import { JwtStrategy } from './jwt.strategy';
 import { RefreshStrategy } from './refresh.strategy';
-import { MockSMSProvider } from '../../common/utils/sms.mock';
+import { MockSMSProvider } from 'src/common/utils/sms.mock';
+import { ThrottlerOtpGuard } from '../../common/guards/throttler-otp.guard';
 
 @Module({
   imports: [
     ConfigModule,
-    ThrottlerModule.forRoot({ ttl: 60 * 60, limit: 5 }), // general
+    ThrottlerModule.forRoot({
+      throttlers: [
+        {
+          ttl: 60000,
+          limit: 10,
+        },
+      ],
+    }),
     JwtModule.registerAsync({
       imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        secret: configService.get<string>('jwt.accessSecret'),
+        signOptions: {
+          expiresIn: parseInt(
+            configService.getOrThrow<string>('jwt.accessExpiration') ||
+              process.env.JWT_ACCESS_EXPIRATION ||
+              '15m',
+          ),
+        },
+      }),
       inject: [ConfigService],
-      useFactory(cfg: ConfigService) {
-        return {
-          secret: cfg.get('jwt.accessSecret'),
-          signOptions: { expiresIn: cfg.get('jwt.accessExpiration') },
-        };
-      },
     }),
   ],
   controllers: [AuthController],
@@ -40,6 +43,7 @@ import { MockSMSProvider } from '../../common/utils/sms.mock';
     JwtStrategy,
     RefreshStrategy,
     MockSMSProvider,
+    ThrottlerOtpGuard,
   ],
   exports: [AuthService],
 })

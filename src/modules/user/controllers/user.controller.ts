@@ -15,8 +15,8 @@ export class UserController {
   }
 
   @Patch()
-  async update(@CurrentUser() user: any, @Body() dto: UpdateUserDto) {
-    if (user.role === 'STAFF')
+  update(@CurrentUser() user: any, @Body() dto: UpdateUserDto) {
+    if (user.role === 'STAFF' || user.role === 'staff')
       return this.userService.updateStaff(user.id, dto);
     return this.userService.updateCustomer(user.id, dto);
   }

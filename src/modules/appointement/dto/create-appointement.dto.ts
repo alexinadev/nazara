@@ -1,16 +1,18 @@
 import {
   IsNotEmpty,
-  IsString,
   IsISO8601,
-  IsArray,
+  IsString,
+  IsNumber,
   IsOptional,
 } from 'class-validator';
 
 export class CreateAppointmentDto {
   @IsNotEmpty()
+  @IsString()
   salonId: string;
 
   @IsNotEmpty()
+  @IsString()
   staffId: string;
 
   @IsNotEmpty()
@@ -18,11 +20,14 @@ export class CreateAppointmentDto {
   scheduledAt: string;
 
   @IsNotEmpty()
-  duration: number; // minutes
+  @IsNumber()
+  duration: number;
 
   @IsOptional()
+  @IsString()
   notes?: string;
 
   @IsOptional()
+  @IsString()
   discountCode?: string;
 }

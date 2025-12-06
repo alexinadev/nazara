@@ -1,6 +1,9 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
-// import { isBefore, addMinutes } from 'date-fns';
 
 @Injectable()
 export class StaffService {
@@ -11,31 +14,46 @@ export class StaffService {
   }
 
   async findAll(salonId?: string) {
-    return this.prisma.staff.findMany({ where: { salonId }});
+    return this.prisma.staff.findMany({
+      where: salonId ? { salonId } : undefined,
+    });
   }
 
   async findOne(id: string) {
-    return this.prisma.staff.findUnique({ where: { id }});
+    const staff = await this.prisma.staff.findUnique({ where: { id } });
+    if (!staff) throw new NotFoundException('Staff not found');
+    return staff;
   }
 
-  async update(id: string, dto: any) {
-    return this.prisma.staff.update({ where: { id }, data: dto });
+  async update(id: string, data: any) {
+    return this.prisma.staff.update({ where: { id }, data });
   }
 
   async remove(id: string) {
-    return this.prisma.staff.delete({ where: { id }});
+    return this.prisma.staff.delete({ where: { id } });
   }
 
-  async addWorkingHours(staffId: string, dayOfWeek: number, startTime: string, endTime: string) {
-    // basic validation
-    const existsOverlap = await this.prisma.staffWorkingHours.findFirst({
-      where: { staffId, dayOfWeek, AND: [{ startTime: { lte: endTime } }, { endTime: { gte: startTime } }] },
+  async addWorkingHours(
+    staffId: string,
+    dayOfWeek: number,
+    startTime: string,
+    endTime: string,
+  ) {
+    // check overlap
+    const conflict = await this.prisma.staffWorkingHours.findFirst({
+      where: {
+        staffId,
+        dayOfWeek,
+        AND: [{ startTime: { lte: endTime } }, { endTime: { gte: startTime } }],
+      },
     });
-    if (existsOverlap) throw new BadRequestException('Overlapping working hours');
-    return this.prisma.staffWorkingHours.create({ data: { staffId, dayOfWeek, startTime, endTime }});
+    if (conflict) throw new BadRequestException('Overlapping working hours');
+    return this.prisma.staffWorkingHours.create({
+      data: { staffId, dayOfWeek, startTime, endTime },
+    });
   }
 
   async addDayOff(staffId: string, date: Date, reason?: string) {
-    return this.prisma.staffDayOff.create({ data: { staffId, date, reason }});
+    return this.prisma.staffDayOff.create({ data: { staffId, date, reason } });
   }
 }

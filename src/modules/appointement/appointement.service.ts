@@ -6,8 +6,8 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { NotificationService } from '../notification/notification.service';
-import { AppointmentStatus } from 'src/generated/prisma/client.js';
-import { addMinutes, isBefore, isAfter } from 'date-fns';
+import { addMinutes, isBefore } from 'date-fns';
+import { AppointmentStatus, Role } from 'src/generated/prisma/client.js';
 
 @Injectable()
 export class AppointmentService {
@@ -16,10 +16,10 @@ export class AppointmentService {
     private notification: NotificationService,
   ) {}
 
-  // check overlapping appointments for a staff
   async validateAvailability(staffId: string, start: Date, duration: number) {
     const end = addMinutes(start, duration);
-    // check day off
+
+    // check staff day off on that date
     const dayOff = await this.prisma.staffDayOff.findFirst({
       where: {
         staffId,
@@ -29,33 +29,22 @@ export class AppointmentService {
         },
       },
     });
-    if (dayOff) throw new BadRequestException('Staff is off on this date');
+    if (dayOff) throw new BadRequestException('Staff is off that day');
 
-    const overlaps = await this.prisma.appointment.findFirst({
-      where: {
-        staffId,
-        AND: [
-          { scheduledAt: { lte: end } },
-          { scheduledAt: { gte: addMinutes(start, -10000) } }, // approximate earlier appointments
-        ],
-        NOT: { status: AppointmentStatus.CANCELLED },
-      },
-    });
-
-    // better overlap check: find appointments with start < end and (start + duration) > start
+    // fetch non-cancelled appointments of staff
     const appointments = await this.prisma.appointment.findMany({
       where: { staffId, NOT: { status: AppointmentStatus.CANCELLED } },
     });
+
     for (const ap of appointments) {
       const apStart = ap.scheduledAt;
       const apEnd = addMinutes(apStart, ap.duration);
       if (apStart < end && apEnd > start) {
         throw new ConflictException(
-          'Time slot overlaps with existing appointment',
+          'Requested time overlaps with existing appointment',
         );
       }
     }
-
     return true;
   }
 
@@ -66,20 +55,23 @@ export class AppointmentService {
 
     await this.validateAvailability(dto.staffId, start, dto.duration);
 
-    // calculate price
+    // compute price: prefer staffService price, else service base price
+    let basePrice = 0;
     const staffService = await this.prisma.staffService.findFirst({
       where: { staffId: dto.staffId },
     });
-    const basePrice =
-      staffService?.price ??
-      (await this.prisma.service.findUnique({ where: { id: dto.serviceId } }))
-        ?.basePrice ??
-      0;
+    if (staffService) basePrice = staffService.price ?? 0;
+    else if (dto.serviceId) {
+      const svc = await this.prisma.service.findUnique({
+        where: { id: dto.serviceId },
+      });
+      basePrice = svc?.basePrice ?? 0;
+    }
 
     let total = basePrice;
+    const appliedDiscounts: { discountId: string; appliedAmount: number }[] =
+      [];
 
-    // apply discount if any
-    let appliedDiscounts = [];
     if (dto.discountCode) {
       const discount = await this.prisma.discount.findUnique({
         where: { code: dto.discountCode },
@@ -87,8 +79,8 @@ export class AppointmentService {
       if (discount && discount.active) {
         const appliedAmount = discount.percentage
           ? total * (discount.percentage / 100)
-          : discount.amount || 0;
-        total = total - appliedAmount;
+          : (discount.amount ?? 0);
+        total = Math.max(0, total - appliedAmount);
         appliedDiscounts.push({ discountId: discount.id, appliedAmount });
       }
     }
@@ -106,7 +98,6 @@ export class AppointmentService {
       },
     });
 
-    // save discount relations
     for (const d of appliedDiscounts) {
       await this.prisma.appointmentDiscount.create({
         data: {
@@ -124,32 +115,39 @@ export class AppointmentService {
         note: 'Created',
       },
     });
-    // notification
+
+    // notifications
     await this.notification.createNotification(
       appointment.customerId,
-      'CUSTOMER',
+      Role.CUSTOMER,
       'Appointment Created',
-      `Appointment on ${appointment.scheduledAt} created`,
+      `Your appointment is scheduled at ${appointment.scheduledAt}`,
     );
     await this.notification.createNotification(
       appointment.staffId,
-      'STAFF',
+      Role.STAFF,
       'New Appointment',
-      `You have a new appointment on ${appointment.scheduledAt}`,
+      `New appointment at ${appointment.scheduledAt}`,
     );
 
     return appointment;
   }
 
-  async cancelAppointment(userId: string, appointmentId: string) {
+  async cancelAppointment(requesterId: string, appointmentId: string) {
     const ap = await this.prisma.appointment.findUnique({
       where: { id: appointmentId },
     });
     if (!ap) throw new NotFoundException('Appointment not found');
-    if (ap.customerId !== userId && ap.staffId !== userId)
-      throw new BadRequestException('Not allowed to cancel');
+
+    const isOwner = ap.customerId === requesterId || ap.staffId === requesterId;
+    if (!isOwner)
+      throw new BadRequestException(
+        'Not authorized to cancel this appointment',
+      );
+
     if (ap.status === AppointmentStatus.CANCELLED)
       throw new BadRequestException('Already cancelled');
+
     const updated = await this.prisma.appointment.update({
       where: { id: appointmentId },
       data: { status: AppointmentStatus.CANCELLED },
@@ -161,29 +159,29 @@ export class AppointmentService {
         note: 'Cancelled by user',
       },
     });
+
     await this.notification.createNotification(
       ap.customerId,
-      'CUSTOMER',
+      Role.CUSTOMER,
       'Appointment Cancelled',
-      `Appointment on ${ap.scheduledAt} was cancelled`,
+      `Your appointment at ${ap.scheduledAt} was cancelled`,
     );
+
     return updated;
   }
 
   async markDone(appointmentId: string) {
-    return this.prisma.$transaction(async (tx) => {
-      const ap = await tx.appointment.update({
-        where: { id: appointmentId },
-        data: { status: AppointmentStatus.DONE },
-      });
-      await tx.appointmentLog.create({
-        data: {
-          appointmentId,
-          status: AppointmentStatus.DONE,
-          note: 'Completed',
-        },
-      });
-      return ap;
+    const ap = await this.prisma.appointment.update({
+      where: { id: appointmentId },
+      data: { status: AppointmentStatus.DONE },
     });
+    await this.prisma.appointmentLog.create({
+      data: {
+        appointmentId,
+        status: AppointmentStatus.DONE,
+        note: 'Marked done',
+      },
+    });
+    return ap;
   }
 }

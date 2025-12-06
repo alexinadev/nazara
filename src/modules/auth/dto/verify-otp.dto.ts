@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsPhoneNumber } from 'class-validator';
+import { IsNotEmpty, IsPhoneNumber, IsOptional, IsIn } from 'class-validator';
 
 export class VerifyOtpDto {
   @IsNotEmpty()
@@ -8,5 +8,7 @@ export class VerifyOtpDto {
   @IsNotEmpty()
   code: string;
 
+  @IsOptional()
+  @IsIn(['customer', 'staff', 'admin'])
   role?: 'customer' | 'staff' | 'admin';
 }

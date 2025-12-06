@@ -13,8 +13,18 @@ export class FavoritesController {
     return this.svc.favoriteSalon(user.id, body.salonId);
   }
 
+  @Post('salon/unfavorite')
+  unfavSalon(@CurrentUser() user: any, @Body() body: { salonId: string }) {
+    return this.svc.unfavoriteSalon(user.id, body.salonId);
+  }
+
   @Post('staff')
   favStaff(@CurrentUser() user: any, @Body() body: { staffId: string }) {
     return this.svc.favoriteStaff(user.id, body.staffId);
+  }
+
+  @Post('staff/unfavorite')
+  unfavStaff(@CurrentUser() user: any, @Body() body: { staffId: string }) {
+    return this.svc.unfavoriteStaff(user.id, body.staffId);
   }
 }

@@ -7,7 +7,7 @@ export class UserService {
   constructor(private prisma: PrismaService) {}
 
   async findCustomerByPhone(phone: string) {
-    return this.prisma.customer.findUnique({ where: { phone }});
+    return this.prisma.customer.findUnique({ where: { phone } });
   }
 
   async updateCustomer(id: string, dto: UpdateUserDto) {
@@ -19,13 +19,14 @@ export class UserService {
   }
 
   async getProfile(id: string, role: string) {
+    if (!id) throw new NotFoundException('User id required');
     if (role === 'STAFF' || role === 'staff') {
-      const staff = await this.prisma.staff.findUnique({ where: { id }});
-      if (!staff) throw new NotFoundException();
+      const staff = await this.prisma.staff.findUnique({ where: { id } });
+      if (!staff) throw new NotFoundException('Staff not found');
       return staff;
     }
-    const customer = await this.prisma.customer.findUnique({ where: { id }});
-    if (!customer) throw new NotFoundException();
+    const customer = await this.prisma.customer.findUnique({ where: { id } });
+    if (!customer) throw new NotFoundException('Customer not found');
     return customer;
   }
 }

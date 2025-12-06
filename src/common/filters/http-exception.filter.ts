@@ -9,19 +9,18 @@ import {
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: any, host: ArgumentsHost) {
-    const ctx = host.switchToHttp();
-    const response = ctx.getResponse();
+    const ctx = host.switchToHttp().getResponse();
     const status =
       exception instanceof HttpException
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
-    const message =
+    const response =
       exception instanceof HttpException
         ? exception.getResponse()
-        : exception.message;
-    response.status(status).json({
+        : { message: exception.message };
+    ctx.status(status).json({
       statusCode: status,
-      message,
+      message: response,
       timestamp: new Date().toISOString(),
     });
   }

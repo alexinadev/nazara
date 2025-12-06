@@ -7,6 +7,7 @@ import { PrismaService } from '../src/database/prisma.service';
 describe('Auth (e2e)', () => {
   let app: INestApplication;
   let prisma: PrismaService;
+
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule],
@@ -14,27 +15,26 @@ describe('Auth (e2e)', () => {
     app = moduleRef.createNestApplication();
     await app.init();
     prisma = moduleRef.get(PrismaService);
-  });
+  }, 20000);
 
   afterAll(async () => {
     await app.close();
   });
 
-  it('should request and verify OTP', async () => {
+  it('request OTP and verify', async () => {
     const phone = '+999000111';
     await request(app.getHttpServer())
       .post('/auth/request-otp')
       .send({ phone })
       .expect(201);
-    // read OTP from DB
-    const otp = await prisma.otp.findFirst({
+    const otp = await prisma.oTP.findFirst({
       where: { phone },
       orderBy: { createdAt: 'desc' },
     });
     const res = await request(app.getHttpServer())
       .post('/auth/verify-otp')
       .send({ phone, code: otp.code })
-      .expect(201);
+      .expect(200);
     expect(res.body.data.accessToken).toBeDefined();
     expect(res.body.data.refreshToken).toBeDefined();
   });

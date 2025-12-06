@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 
 @Injectable()
@@ -9,26 +9,29 @@ export class SalonService {
     return this.prisma.salon.create({ data });
   }
 
-  async findAll(page = 1, perPage = 10, filter?: any) {
+  async findAll(page = 1, perPage = 10, q?: string) {
     const where: any = {};
-    if (filter?.q) {
+    if (q) {
       where.OR = [
-        { name: { contains: filter.q, mode: 'insensitive' } },
-        { description: { contains: filter.q, mode: 'insensitive' } },
+        { name: { contains: q, mode: 'insensitive' } },
+        { description: { contains: q, mode: 'insensitive' } },
+        { address: { contains: q, mode: 'insensitive' } },
       ];
     }
-    const salons = await this.prisma.salon.findMany({
+    const items = await this.prisma.salon.findMany({
       where,
       skip: (page - 1) * perPage,
       take: perPage,
       orderBy: { createdAt: 'desc' },
     });
     const total = await this.prisma.salon.count({ where });
-    return { items: salons, total, page, perPage };
+    return { items, total, page, perPage };
   }
 
   async findOne(id: string) {
-    return this.prisma.salon.findUnique({ where: { id }});
+    const salon = await this.prisma.salon.findUnique({ where: { id } });
+    if (!salon) throw new NotFoundException('Salon not found');
+    return salon;
   }
 
   async update(id: string, data: any) {
@@ -36,6 +39,6 @@ export class SalonService {
   }
 
   async remove(id: string) {
-    return this.prisma.salon.delete({ where: { id }});
+    return this.prisma.salon.delete({ where: { id } });
   }
 }
