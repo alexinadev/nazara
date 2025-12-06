@@ -10,7 +10,8 @@ import { addMinutes, isBefore } from 'date-fns';
 import { JwtService } from '@nestjs/jwt';
 import { hashData, compareHash } from '../../common/utils/hash';
 import { ConfigService } from '@nestjs/config';
-import { Role } from 'src/generated/prisma/client.js';
+// import { Role } from 'src/generated/prisma/client.js';
+import { Role } from '../../generated/prisma/client.js';
 
 @Injectable()
 export class AuthService {

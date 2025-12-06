@@ -221,14 +221,14 @@ export type ReviewCriteriaOrderByWithRelationInput = {
 
 export type ReviewCriteriaWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  name?: string
   AND?: Prisma.ReviewCriteriaWhereInput | Prisma.ReviewCriteriaWhereInput[]
   OR?: Prisma.ReviewCriteriaWhereInput[]
   NOT?: Prisma.ReviewCriteriaWhereInput | Prisma.ReviewCriteriaWhereInput[]
-  name?: Prisma.StringFilter<"ReviewCriteria"> | string
   weight?: Prisma.FloatFilter<"ReviewCriteria"> | number
   createdAt?: Prisma.DateTimeFilter<"ReviewCriteria"> | Date | string
   criteriaScores?: Prisma.ReviewCriteriaScoreListRelationFilter
-}, "id">
+}, "id" | "name">
 
 export type ReviewCriteriaOrderByWithAggregationInput = {
   id?: Prisma.SortOrder

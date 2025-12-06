@@ -2547,6 +2547,7 @@ export const ReviewScalarFieldEnum = {
   id: 'id',
   appointmentId: 'appointmentId',
   customerId: 'customerId',
+  rating: 'rating',
   comment: 'comment',
   createdAt: 'createdAt'
 } as const
@@ -2685,6 +2686,7 @@ export const DeviceTokenScalarFieldEnum = {
   token: 'token',
   staffId: 'staffId',
   customerId: 'customerId',
+  userRole: 'userRole',
   createdAt: 'createdAt'
 } as const
 

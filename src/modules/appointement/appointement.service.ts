@@ -7,7 +7,7 @@ import {
 import { PrismaService } from '../../database/prisma.service';
 import { NotificationService } from '../notification/notification.service';
 import { addMinutes, isBefore } from 'date-fns';
-import { AppointmentStatus, Role } from 'src/generated/prisma/client.js';
+import { AppointmentStatus, Role } from '../../generated/prisma/client.js';
 
 @Injectable()
 export class AppointmentService {

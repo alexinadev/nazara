@@ -221,8 +221,8 @@ export type StaffWhereInput = {
   specialties?: Prisma.StaffSpecialtyListRelationFilter
   appointments?: Prisma.AppointmentListRelationFilter
   favorites?: Prisma.FavoriteStaffListRelationFilter
-  deviceTokens?: Prisma.DeviceTokenListRelationFilter
   galleries?: Prisma.GalleryListRelationFilter
+  deviceTokens?: Prisma.DeviceTokenListRelationFilter
 }
 
 export type StaffOrderByWithRelationInput = {
@@ -242,8 +242,8 @@ export type StaffOrderByWithRelationInput = {
   specialties?: Prisma.StaffSpecialtyOrderByRelationAggregateInput
   appointments?: Prisma.AppointmentOrderByRelationAggregateInput
   favorites?: Prisma.FavoriteStaffOrderByRelationAggregateInput
-  deviceTokens?: Prisma.DeviceTokenOrderByRelationAggregateInput
   galleries?: Prisma.GalleryOrderByRelationAggregateInput
+  deviceTokens?: Prisma.DeviceTokenOrderByRelationAggregateInput
 }
 
 export type StaffWhereUniqueInput = Prisma.AtLeast<{
@@ -266,8 +266,8 @@ export type StaffWhereUniqueInput = Prisma.AtLeast<{
   specialties?: Prisma.StaffSpecialtyListRelationFilter
   appointments?: Prisma.AppointmentListRelationFilter
   favorites?: Prisma.FavoriteStaffListRelationFilter
-  deviceTokens?: Prisma.DeviceTokenListRelationFilter
   galleries?: Prisma.GalleryListRelationFilter
+  deviceTokens?: Prisma.DeviceTokenListRelationFilter
 }, "id" | "phone">
 
 export type StaffOrderByWithAggregationInput = {
@@ -316,8 +316,8 @@ export type StaffCreateInput = {
   specialties?: Prisma.StaffSpecialtyCreateNestedManyWithoutStaffInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutStaffInput
   favorites?: Prisma.FavoriteStaffCreateNestedManyWithoutStaffInput
-  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutStaffInput
   galleries?: Prisma.GalleryCreateNestedManyWithoutStaffInput
+  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutStaffInput
 }
 
 export type StaffUncheckedCreateInput = {
@@ -336,8 +336,8 @@ export type StaffUncheckedCreateInput = {
   specialties?: Prisma.StaffSpecialtyUncheckedCreateNestedManyWithoutStaffInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutStaffInput
   favorites?: Prisma.FavoriteStaffUncheckedCreateNestedManyWithoutStaffInput
-  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutStaffInput
   galleries?: Prisma.GalleryUncheckedCreateNestedManyWithoutStaffInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutStaffInput
 }
 
 export type StaffUpdateInput = {
@@ -356,8 +356,8 @@ export type StaffUpdateInput = {
   specialties?: Prisma.StaffSpecialtyUpdateManyWithoutStaffNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutStaffNestedInput
   favorites?: Prisma.FavoriteStaffUpdateManyWithoutStaffNestedInput
-  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutStaffNestedInput
   galleries?: Prisma.GalleryUpdateManyWithoutStaffNestedInput
+  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutStaffNestedInput
 }
 
 export type StaffUncheckedUpdateInput = {
@@ -376,8 +376,8 @@ export type StaffUncheckedUpdateInput = {
   specialties?: Prisma.StaffSpecialtyUncheckedUpdateManyWithoutStaffNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutStaffNestedInput
   favorites?: Prisma.FavoriteStaffUncheckedUpdateManyWithoutStaffNestedInput
-  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutStaffNestedInput
   galleries?: Prisma.GalleryUncheckedUpdateManyWithoutStaffNestedInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutStaffNestedInput
 }
 
 export type StaffCreateManyInput = {
@@ -648,8 +648,8 @@ export type StaffCreateWithoutSalonInput = {
   specialties?: Prisma.StaffSpecialtyCreateNestedManyWithoutStaffInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutStaffInput
   favorites?: Prisma.FavoriteStaffCreateNestedManyWithoutStaffInput
-  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutStaffInput
   galleries?: Prisma.GalleryCreateNestedManyWithoutStaffInput
+  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutStaffInput
 }
 
 export type StaffUncheckedCreateWithoutSalonInput = {
@@ -667,8 +667,8 @@ export type StaffUncheckedCreateWithoutSalonInput = {
   specialties?: Prisma.StaffSpecialtyUncheckedCreateNestedManyWithoutStaffInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutStaffInput
   favorites?: Prisma.FavoriteStaffUncheckedCreateNestedManyWithoutStaffInput
-  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutStaffInput
   galleries?: Prisma.GalleryUncheckedCreateNestedManyWithoutStaffInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutStaffInput
 }
 
 export type StaffCreateOrConnectWithoutSalonInput = {
@@ -727,8 +727,8 @@ export type StaffCreateWithoutWorkingHoursInput = {
   specialties?: Prisma.StaffSpecialtyCreateNestedManyWithoutStaffInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutStaffInput
   favorites?: Prisma.FavoriteStaffCreateNestedManyWithoutStaffInput
-  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutStaffInput
   galleries?: Prisma.GalleryCreateNestedManyWithoutStaffInput
+  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutStaffInput
 }
 
 export type StaffUncheckedCreateWithoutWorkingHoursInput = {
@@ -746,8 +746,8 @@ export type StaffUncheckedCreateWithoutWorkingHoursInput = {
   specialties?: Prisma.StaffSpecialtyUncheckedCreateNestedManyWithoutStaffInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutStaffInput
   favorites?: Prisma.FavoriteStaffUncheckedCreateNestedManyWithoutStaffInput
-  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutStaffInput
   galleries?: Prisma.GalleryUncheckedCreateNestedManyWithoutStaffInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutStaffInput
 }
 
 export type StaffCreateOrConnectWithoutWorkingHoursInput = {
@@ -781,8 +781,8 @@ export type StaffUpdateWithoutWorkingHoursInput = {
   specialties?: Prisma.StaffSpecialtyUpdateManyWithoutStaffNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutStaffNestedInput
   favorites?: Prisma.FavoriteStaffUpdateManyWithoutStaffNestedInput
-  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutStaffNestedInput
   galleries?: Prisma.GalleryUpdateManyWithoutStaffNestedInput
+  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutStaffNestedInput
 }
 
 export type StaffUncheckedUpdateWithoutWorkingHoursInput = {
@@ -800,8 +800,8 @@ export type StaffUncheckedUpdateWithoutWorkingHoursInput = {
   specialties?: Prisma.StaffSpecialtyUncheckedUpdateManyWithoutStaffNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutStaffNestedInput
   favorites?: Prisma.FavoriteStaffUncheckedUpdateManyWithoutStaffNestedInput
-  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutStaffNestedInput
   galleries?: Prisma.GalleryUncheckedUpdateManyWithoutStaffNestedInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutStaffNestedInput
 }
 
 export type StaffCreateWithoutDayOffsInput = {
@@ -819,8 +819,8 @@ export type StaffCreateWithoutDayOffsInput = {
   specialties?: Prisma.StaffSpecialtyCreateNestedManyWithoutStaffInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutStaffInput
   favorites?: Prisma.FavoriteStaffCreateNestedManyWithoutStaffInput
-  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutStaffInput
   galleries?: Prisma.GalleryCreateNestedManyWithoutStaffInput
+  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutStaffInput
 }
 
 export type StaffUncheckedCreateWithoutDayOffsInput = {
@@ -838,8 +838,8 @@ export type StaffUncheckedCreateWithoutDayOffsInput = {
   specialties?: Prisma.StaffSpecialtyUncheckedCreateNestedManyWithoutStaffInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutStaffInput
   favorites?: Prisma.FavoriteStaffUncheckedCreateNestedManyWithoutStaffInput
-  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutStaffInput
   galleries?: Prisma.GalleryUncheckedCreateNestedManyWithoutStaffInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutStaffInput
 }
 
 export type StaffCreateOrConnectWithoutDayOffsInput = {
@@ -873,8 +873,8 @@ export type StaffUpdateWithoutDayOffsInput = {
   specialties?: Prisma.StaffSpecialtyUpdateManyWithoutStaffNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutStaffNestedInput
   favorites?: Prisma.FavoriteStaffUpdateManyWithoutStaffNestedInput
-  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutStaffNestedInput
   galleries?: Prisma.GalleryUpdateManyWithoutStaffNestedInput
+  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutStaffNestedInput
 }
 
 export type StaffUncheckedUpdateWithoutDayOffsInput = {
@@ -892,8 +892,8 @@ export type StaffUncheckedUpdateWithoutDayOffsInput = {
   specialties?: Prisma.StaffSpecialtyUncheckedUpdateManyWithoutStaffNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutStaffNestedInput
   favorites?: Prisma.FavoriteStaffUncheckedUpdateManyWithoutStaffNestedInput
-  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutStaffNestedInput
   galleries?: Prisma.GalleryUncheckedUpdateManyWithoutStaffNestedInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutStaffNestedInput
 }
 
 export type StaffCreateWithoutServicesInput = {
@@ -911,8 +911,8 @@ export type StaffCreateWithoutServicesInput = {
   specialties?: Prisma.StaffSpecialtyCreateNestedManyWithoutStaffInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutStaffInput
   favorites?: Prisma.FavoriteStaffCreateNestedManyWithoutStaffInput
-  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutStaffInput
   galleries?: Prisma.GalleryCreateNestedManyWithoutStaffInput
+  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutStaffInput
 }
 
 export type StaffUncheckedCreateWithoutServicesInput = {
@@ -930,8 +930,8 @@ export type StaffUncheckedCreateWithoutServicesInput = {
   specialties?: Prisma.StaffSpecialtyUncheckedCreateNestedManyWithoutStaffInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutStaffInput
   favorites?: Prisma.FavoriteStaffUncheckedCreateNestedManyWithoutStaffInput
-  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutStaffInput
   galleries?: Prisma.GalleryUncheckedCreateNestedManyWithoutStaffInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutStaffInput
 }
 
 export type StaffCreateOrConnectWithoutServicesInput = {
@@ -965,8 +965,8 @@ export type StaffUpdateWithoutServicesInput = {
   specialties?: Prisma.StaffSpecialtyUpdateManyWithoutStaffNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutStaffNestedInput
   favorites?: Prisma.FavoriteStaffUpdateManyWithoutStaffNestedInput
-  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutStaffNestedInput
   galleries?: Prisma.GalleryUpdateManyWithoutStaffNestedInput
+  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutStaffNestedInput
 }
 
 export type StaffUncheckedUpdateWithoutServicesInput = {
@@ -984,8 +984,8 @@ export type StaffUncheckedUpdateWithoutServicesInput = {
   specialties?: Prisma.StaffSpecialtyUncheckedUpdateManyWithoutStaffNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutStaffNestedInput
   favorites?: Prisma.FavoriteStaffUncheckedUpdateManyWithoutStaffNestedInput
-  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutStaffNestedInput
   galleries?: Prisma.GalleryUncheckedUpdateManyWithoutStaffNestedInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutStaffNestedInput
 }
 
 export type StaffCreateWithoutAppointmentsInput = {
@@ -1003,8 +1003,8 @@ export type StaffCreateWithoutAppointmentsInput = {
   services?: Prisma.StaffServiceCreateNestedManyWithoutStaffInput
   specialties?: Prisma.StaffSpecialtyCreateNestedManyWithoutStaffInput
   favorites?: Prisma.FavoriteStaffCreateNestedManyWithoutStaffInput
-  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutStaffInput
   galleries?: Prisma.GalleryCreateNestedManyWithoutStaffInput
+  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutStaffInput
 }
 
 export type StaffUncheckedCreateWithoutAppointmentsInput = {
@@ -1022,8 +1022,8 @@ export type StaffUncheckedCreateWithoutAppointmentsInput = {
   services?: Prisma.StaffServiceUncheckedCreateNestedManyWithoutStaffInput
   specialties?: Prisma.StaffSpecialtyUncheckedCreateNestedManyWithoutStaffInput
   favorites?: Prisma.FavoriteStaffUncheckedCreateNestedManyWithoutStaffInput
-  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutStaffInput
   galleries?: Prisma.GalleryUncheckedCreateNestedManyWithoutStaffInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutStaffInput
 }
 
 export type StaffCreateOrConnectWithoutAppointmentsInput = {
@@ -1057,8 +1057,8 @@ export type StaffUpdateWithoutAppointmentsInput = {
   services?: Prisma.StaffServiceUpdateManyWithoutStaffNestedInput
   specialties?: Prisma.StaffSpecialtyUpdateManyWithoutStaffNestedInput
   favorites?: Prisma.FavoriteStaffUpdateManyWithoutStaffNestedInput
-  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutStaffNestedInput
   galleries?: Prisma.GalleryUpdateManyWithoutStaffNestedInput
+  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutStaffNestedInput
 }
 
 export type StaffUncheckedUpdateWithoutAppointmentsInput = {
@@ -1076,8 +1076,8 @@ export type StaffUncheckedUpdateWithoutAppointmentsInput = {
   services?: Prisma.StaffServiceUncheckedUpdateManyWithoutStaffNestedInput
   specialties?: Prisma.StaffSpecialtyUncheckedUpdateManyWithoutStaffNestedInput
   favorites?: Prisma.FavoriteStaffUncheckedUpdateManyWithoutStaffNestedInput
-  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutStaffNestedInput
   galleries?: Prisma.GalleryUncheckedUpdateManyWithoutStaffNestedInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutStaffNestedInput
 }
 
 export type StaffCreateWithoutGalleriesInput = {
@@ -1187,8 +1187,8 @@ export type StaffCreateWithoutSpecialtiesInput = {
   services?: Prisma.StaffServiceCreateNestedManyWithoutStaffInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutStaffInput
   favorites?: Prisma.FavoriteStaffCreateNestedManyWithoutStaffInput
-  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutStaffInput
   galleries?: Prisma.GalleryCreateNestedManyWithoutStaffInput
+  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutStaffInput
 }
 
 export type StaffUncheckedCreateWithoutSpecialtiesInput = {
@@ -1206,8 +1206,8 @@ export type StaffUncheckedCreateWithoutSpecialtiesInput = {
   services?: Prisma.StaffServiceUncheckedCreateNestedManyWithoutStaffInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutStaffInput
   favorites?: Prisma.FavoriteStaffUncheckedCreateNestedManyWithoutStaffInput
-  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutStaffInput
   galleries?: Prisma.GalleryUncheckedCreateNestedManyWithoutStaffInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutStaffInput
 }
 
 export type StaffCreateOrConnectWithoutSpecialtiesInput = {
@@ -1241,8 +1241,8 @@ export type StaffUpdateWithoutSpecialtiesInput = {
   services?: Prisma.StaffServiceUpdateManyWithoutStaffNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutStaffNestedInput
   favorites?: Prisma.FavoriteStaffUpdateManyWithoutStaffNestedInput
-  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutStaffNestedInput
   galleries?: Prisma.GalleryUpdateManyWithoutStaffNestedInput
+  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutStaffNestedInput
 }
 
 export type StaffUncheckedUpdateWithoutSpecialtiesInput = {
@@ -1260,8 +1260,8 @@ export type StaffUncheckedUpdateWithoutSpecialtiesInput = {
   services?: Prisma.StaffServiceUncheckedUpdateManyWithoutStaffNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutStaffNestedInput
   favorites?: Prisma.FavoriteStaffUncheckedUpdateManyWithoutStaffNestedInput
-  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutStaffNestedInput
   galleries?: Prisma.GalleryUncheckedUpdateManyWithoutStaffNestedInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutStaffNestedInput
 }
 
 export type StaffCreateWithoutFavoritesInput = {
@@ -1279,8 +1279,8 @@ export type StaffCreateWithoutFavoritesInput = {
   services?: Prisma.StaffServiceCreateNestedManyWithoutStaffInput
   specialties?: Prisma.StaffSpecialtyCreateNestedManyWithoutStaffInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutStaffInput
-  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutStaffInput
   galleries?: Prisma.GalleryCreateNestedManyWithoutStaffInput
+  deviceTokens?: Prisma.DeviceTokenCreateNestedManyWithoutStaffInput
 }
 
 export type StaffUncheckedCreateWithoutFavoritesInput = {
@@ -1298,8 +1298,8 @@ export type StaffUncheckedCreateWithoutFavoritesInput = {
   services?: Prisma.StaffServiceUncheckedCreateNestedManyWithoutStaffInput
   specialties?: Prisma.StaffSpecialtyUncheckedCreateNestedManyWithoutStaffInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutStaffInput
-  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutStaffInput
   galleries?: Prisma.GalleryUncheckedCreateNestedManyWithoutStaffInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutStaffInput
 }
 
 export type StaffCreateOrConnectWithoutFavoritesInput = {
@@ -1333,8 +1333,8 @@ export type StaffUpdateWithoutFavoritesInput = {
   services?: Prisma.StaffServiceUpdateManyWithoutStaffNestedInput
   specialties?: Prisma.StaffSpecialtyUpdateManyWithoutStaffNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutStaffNestedInput
-  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutStaffNestedInput
   galleries?: Prisma.GalleryUpdateManyWithoutStaffNestedInput
+  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutStaffNestedInput
 }
 
 export type StaffUncheckedUpdateWithoutFavoritesInput = {
@@ -1352,8 +1352,8 @@ export type StaffUncheckedUpdateWithoutFavoritesInput = {
   services?: Prisma.StaffServiceUncheckedUpdateManyWithoutStaffNestedInput
   specialties?: Prisma.StaffSpecialtyUncheckedUpdateManyWithoutStaffNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutStaffNestedInput
-  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutStaffNestedInput
   galleries?: Prisma.GalleryUncheckedUpdateManyWithoutStaffNestedInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutStaffNestedInput
 }
 
 export type StaffCreateWithoutDeviceTokensInput = {
@@ -1474,8 +1474,8 @@ export type StaffUpdateWithoutSalonInput = {
   specialties?: Prisma.StaffSpecialtyUpdateManyWithoutStaffNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutStaffNestedInput
   favorites?: Prisma.FavoriteStaffUpdateManyWithoutStaffNestedInput
-  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutStaffNestedInput
   galleries?: Prisma.GalleryUpdateManyWithoutStaffNestedInput
+  deviceTokens?: Prisma.DeviceTokenUpdateManyWithoutStaffNestedInput
 }
 
 export type StaffUncheckedUpdateWithoutSalonInput = {
@@ -1493,8 +1493,8 @@ export type StaffUncheckedUpdateWithoutSalonInput = {
   specialties?: Prisma.StaffSpecialtyUncheckedUpdateManyWithoutStaffNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutStaffNestedInput
   favorites?: Prisma.FavoriteStaffUncheckedUpdateManyWithoutStaffNestedInput
-  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutStaffNestedInput
   galleries?: Prisma.GalleryUncheckedUpdateManyWithoutStaffNestedInput
+  deviceTokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutStaffNestedInput
 }
 
 export type StaffUncheckedUpdateManyWithoutSalonInput = {
@@ -1520,8 +1520,8 @@ export type StaffCountOutputType = {
   specialties: number
   appointments: number
   favorites: number
-  deviceTokens: number
   galleries: number
+  deviceTokens: number
 }
 
 export type StaffCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1531,8 +1531,8 @@ export type StaffCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.
   specialties?: boolean | StaffCountOutputTypeCountSpecialtiesArgs
   appointments?: boolean | StaffCountOutputTypeCountAppointmentsArgs
   favorites?: boolean | StaffCountOutputTypeCountFavoritesArgs
-  deviceTokens?: boolean | StaffCountOutputTypeCountDeviceTokensArgs
   galleries?: boolean | StaffCountOutputTypeCountGalleriesArgs
+  deviceTokens?: boolean | StaffCountOutputTypeCountDeviceTokensArgs
 }
 
 /**
@@ -1590,15 +1590,15 @@ export type StaffCountOutputTypeCountFavoritesArgs<ExtArgs extends runtime.Types
 /**
  * StaffCountOutputType without action
  */
-export type StaffCountOutputTypeCountDeviceTokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.DeviceTokenWhereInput
+export type StaffCountOutputTypeCountGalleriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GalleryWhereInput
 }
 
 /**
  * StaffCountOutputType without action
  */
-export type StaffCountOutputTypeCountGalleriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.GalleryWhereInput
+export type StaffCountOutputTypeCountDeviceTokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DeviceTokenWhereInput
 }
 
 
@@ -1619,8 +1619,8 @@ export type StaffSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   specialties?: boolean | Prisma.Staff$specialtiesArgs<ExtArgs>
   appointments?: boolean | Prisma.Staff$appointmentsArgs<ExtArgs>
   favorites?: boolean | Prisma.Staff$favoritesArgs<ExtArgs>
-  deviceTokens?: boolean | Prisma.Staff$deviceTokensArgs<ExtArgs>
   galleries?: boolean | Prisma.Staff$galleriesArgs<ExtArgs>
+  deviceTokens?: boolean | Prisma.Staff$deviceTokensArgs<ExtArgs>
   _count?: boolean | Prisma.StaffCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["staff"]>
 
@@ -1671,8 +1671,8 @@ export type StaffInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   specialties?: boolean | Prisma.Staff$specialtiesArgs<ExtArgs>
   appointments?: boolean | Prisma.Staff$appointmentsArgs<ExtArgs>
   favorites?: boolean | Prisma.Staff$favoritesArgs<ExtArgs>
-  deviceTokens?: boolean | Prisma.Staff$deviceTokensArgs<ExtArgs>
   galleries?: boolean | Prisma.Staff$galleriesArgs<ExtArgs>
+  deviceTokens?: boolean | Prisma.Staff$deviceTokensArgs<ExtArgs>
   _count?: boolean | Prisma.StaffCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type StaffIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1692,8 +1692,8 @@ export type $StaffPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     specialties: Prisma.$StaffSpecialtyPayload<ExtArgs>[]
     appointments: Prisma.$AppointmentPayload<ExtArgs>[]
     favorites: Prisma.$FavoriteStaffPayload<ExtArgs>[]
-    deviceTokens: Prisma.$DeviceTokenPayload<ExtArgs>[]
     galleries: Prisma.$GalleryPayload<ExtArgs>[]
+    deviceTokens: Prisma.$DeviceTokenPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2106,8 +2106,8 @@ export interface Prisma__StaffClient<T, Null = never, ExtArgs extends runtime.Ty
   specialties<T extends Prisma.Staff$specialtiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Staff$specialtiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StaffSpecialtyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   appointments<T extends Prisma.Staff$appointmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Staff$appointmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   favorites<T extends Prisma.Staff$favoritesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Staff$favoritesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FavoriteStaffPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  deviceTokens<T extends Prisma.Staff$deviceTokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Staff$deviceTokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeviceTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   galleries<T extends Prisma.Staff$galleriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Staff$galleriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GalleryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  deviceTokens<T extends Prisma.Staff$deviceTokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Staff$deviceTokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeviceTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2686,30 +2686,6 @@ export type Staff$favoritesArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
- * Staff.deviceTokens
- */
-export type Staff$deviceTokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the DeviceToken
-   */
-  select?: Prisma.DeviceTokenSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the DeviceToken
-   */
-  omit?: Prisma.DeviceTokenOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.DeviceTokenInclude<ExtArgs> | null
-  where?: Prisma.DeviceTokenWhereInput
-  orderBy?: Prisma.DeviceTokenOrderByWithRelationInput | Prisma.DeviceTokenOrderByWithRelationInput[]
-  cursor?: Prisma.DeviceTokenWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.DeviceTokenScalarFieldEnum | Prisma.DeviceTokenScalarFieldEnum[]
-}
-
-/**
  * Staff.galleries
  */
 export type Staff$galleriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2731,6 +2707,30 @@ export type Staff$galleriesArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.GalleryScalarFieldEnum | Prisma.GalleryScalarFieldEnum[]
+}
+
+/**
+ * Staff.deviceTokens
+ */
+export type Staff$deviceTokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DeviceToken
+   */
+  select?: Prisma.DeviceTokenSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DeviceToken
+   */
+  omit?: Prisma.DeviceTokenOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DeviceTokenInclude<ExtArgs> | null
+  where?: Prisma.DeviceTokenWhereInput
+  orderBy?: Prisma.DeviceTokenOrderByWithRelationInput | Prisma.DeviceTokenOrderByWithRelationInput[]
+  cursor?: Prisma.DeviceTokenWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DeviceTokenScalarFieldEnum | Prisma.DeviceTokenScalarFieldEnum[]
 }
 
 /**
