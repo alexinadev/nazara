@@ -100,6 +100,7 @@ export const SalonScalarFieldEnum = {
   name: 'name',
   description: 'description',
   phone: 'phone',
+  slug: 'slug',
   address: 'address',
   lat: 'lat',
   lng: 'lng',

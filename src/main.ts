@@ -5,6 +5,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { LoggingInterceptor } from './common/utils/LoggingInterceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -20,6 +21,8 @@ async function bootstrap() {
     .build();
   const doc = SwaggerModule.createDocument(app, documentationConfig);
   SwaggerModule.setup('api', app, doc);
+
+  app.useGlobalInterceptors(new LoggingInterceptor());
 
   const port = process.env.PORT || 3000;
   await app.listen(port);
