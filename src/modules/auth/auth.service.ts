@@ -2,6 +2,7 @@ import {
   Injectable,
   UnauthorizedException,
   BadRequestException,
+  Res,
   // Inject,
 } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
@@ -11,6 +12,7 @@ import { JwtService } from '@nestjs/jwt';
 import { hashData, compareHash } from '../../common/utils/hash';
 import { ConfigService } from '@nestjs/config';
 import { Role } from '../../generated/prisma/client.js';
+import { ResponseOtpDto } from './dto/request-otp.dto';
 
 @Injectable()
 export class AuthService {
@@ -45,7 +47,7 @@ export class AuthService {
       `Your verification code: ${code} (valid 5 minutes)`,
     );
 
-    return { success: true };
+    return { phone, code, expiresAt: expiresAt.getTime() } as ResponseOtpDto;
   }
 
   /**
