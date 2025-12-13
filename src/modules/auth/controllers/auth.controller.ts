@@ -2,7 +2,7 @@
 import { Controller, Post, Body, UseGuards, HttpCode } from '@nestjs/common';
 import { AuthService } from '../auth.service';
 import { RequestOtpDto, ResponseOtpDto } from '../dto/request-otp.dto';
-import { VerifyOtpDto } from '../dto/verify-otp.dto';
+import { VerifyOtpDto, VerifyOtpResponseDto } from '../dto/verify-otp.dto';
 import { RefreshTokenDto } from '../dto/refresh-token.dto';
 import { ThrottlerOtpGuard } from 'src/common/guards/throttler-otp.guard';
 import { JwtService } from '@nestjs/jwt';
@@ -24,10 +24,11 @@ export class AuthController {
     return response;
   }
 
+  @ApiResponse({ status: 200, type: VerifyOtpResponseDto, description: 'OTP verified successfully.' })
   @HttpCode(200)
   @Post('verify-otp')
   async verifyOtp(@Body() dto: VerifyOtpDto) {
-    return this.auth.verifyOtp(dto.phone, dto.code, dto.role);
+    return this.auth.verifyCustomerOtp(dto.phone, dto.code);
   }
 
   @HttpCode(200)

@@ -13,6 +13,7 @@ import { hashData, compareHash } from '../../common/utils/hash';
 import { ConfigService } from '@nestjs/config';
 import { Role } from '../../generated/prisma/client.js';
 import { ResponseOtpDto } from './dto/request-otp.dto';
+import { VerifyOtpResponseDto } from './dto/verify-otp.dto';
 
 @Injectable()
 export class AuthService {
@@ -58,6 +59,7 @@ export class AuthService {
     code: string,
     role?: 'customer' | 'staff' | 'admin',
   ) {
+    console.log(`Verifying OTP for phone: ${phone}, code: ${code}, role: ${role}`);
     const otp = await this.prisma.oTP.findFirst({
       where: { phone },
       orderBy: { createdAt: 'desc' },
@@ -183,7 +185,93 @@ export class AuthService {
       accessToken,
       refreshToken,
       user: { id: userId, role: userRole, phone: userPhone },
-    };
+    } as VerifyOtpResponseDto;
+  }
+
+  async verifyCustomerOtp(
+    phone: string,
+    code: string,
+  ) {
+    console.log(`Verifying Customer OTP for phone: ${phone}, code: ${code}`);
+    const otp = await this.prisma.oTP.findFirst({
+      where: { phone },
+      orderBy: { createdAt: 'desc' },
+    });
+
+    if (!otp) throw new UnauthorizedException('OTP not found');
+    if (otp.code !== code) throw new UnauthorizedException('Invalid OTP code');
+    if (isBefore(otp.expiresAt, new Date())) {
+      // delete expired OTP record
+      await this.prisma.oTP
+        .deleteMany({ where: { id: otp.id } })
+        .catch(() => {});
+      throw new UnauthorizedException('OTP expired');
+    }
+
+    // Check if user is staff, send staff user as customer
+    const staffUser = await this.prisma.staff.findUnique({ where: { phone } });
+    let userId: string;
+    let userRole: Role = Role.CUSTOMER;
+    let userName: string = '';
+    if (!staffUser) {
+      let customer = await this.prisma.customer.findUnique({
+        where: { phone },
+      });
+      if (!customer) {
+        customer = await this.prisma.customer.create({ data: { phone } });
+      }
+      userId = customer.id;
+      userName = customer.firstName + " " + customer.lastName || '';
+    } else {
+      userId = staffUser.id;
+      userRole = staffUser.role;
+      userName = staffUser.firstName + " " + staffUser.lastName || '';
+    }
+  
+    // Build payload
+    const payload = { userId, userRole, phone };
+
+    const accessToken = this.jwt.sign(payload, {
+      secret:
+        this.cfg.get<string>('jwt.accessSecret') ||
+        process.env.JWT_ACCESS_SECRET,
+      expiresIn:
+        this.cfg.get<string>('jwt.accessExpiration') ||
+        process.env.JWT_ACCESS_EXPIRATION ||
+        '15m',
+    } as any);
+
+    const refreshToken = this.jwt.sign(payload, {
+      secret:
+        this.cfg.get<string>('jwt.refreshSecret') ||
+        process.env.JWT_REFRESH_SECRET,
+      expiresIn:
+        this.cfg.get<string>('jwt.refreshExpiration') ||
+        process.env.JWT_REFRESH_EXPIRATION ||
+        '7d',
+    } as any);
+
+    // Hash refresh token and store in DeviceToken (per schema)
+    const hashed = await hashData(refreshToken);
+    // store associated device token; userRole stored as Role enum
+    await this.prisma.deviceToken.create({
+      data: {
+        token: hashed,
+        userRole,
+        staffId:
+          userRole === Role.STAFF || userRole === Role.ADMIN ? userId : null,
+        customerId: userRole === Role.CUSTOMER ? userId : null,
+      },
+    });
+
+    // Remove used OTPs for this phone
+    await this.prisma.oTP.deleteMany({ where: { phone } }).catch(() => {});
+
+    return {
+      accessToken,
+      refreshToken,
+      user: { id: userId, role: userRole, phone, name: userName },
+    } as VerifyOtpResponseDto;
   }
 
   /**
